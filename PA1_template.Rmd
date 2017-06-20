@@ -63,6 +63,12 @@ rawData$steps.filled <- ifelse(is.na(rawData$steps),mean(rawData$steps, na.rm = 
 summary(rawData)
 ```
 
+ 3. a Histogram to show the result after imputing missing value.
+```{r}
+result.imputed <- aggregate(rawData$steps.filled, by = list(rawData$date), FUN=sum)
+colnames(result.imputed)<- c("date","steps")
+barplot(result.imputed$steps, xlab="date", ylab="total steps", space=0, names.arg = result.imputed$date, main = "Total number of steps taken each day (imputed)")
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?

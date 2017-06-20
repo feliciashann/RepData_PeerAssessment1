@@ -125,6 +125,15 @@ summary(rawData)
 ##  NA's   :2304     (Other)   :15840
 ```
 
+ 3. a Histogram to show the result after imputing missing value.
+
+```r
+result.imputed <- aggregate(rawData$steps.filled, by = list(rawData$date), FUN=sum)
+colnames(result.imputed)<- c("date","steps")
+barplot(result.imputed$steps, xlab="date", ylab="total steps", space=0, names.arg = result.imputed$date, main = "Total number of steps taken each day (imputed)")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -151,4 +160,4 @@ ggplot(data=result3, aes(x=interval, y=steps.filled, group=isWeekday, colour=isW
     geom_point()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
